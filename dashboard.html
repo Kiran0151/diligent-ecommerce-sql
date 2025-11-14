@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Commerce Data Dashboard</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .header {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .header h1 {
+        color: #333;
+        font-size: 2.5em;
+        margin-bottom: 10px;
+      }
+
+      .header p {
+        color: #666;
+        font-size: 1.1em;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+
+      .stat-card {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .stat-card .number {
+        font-size: 2.5em;
+        font-weight: bold;
+        color: #667eea;
+        margin-bottom: 10px;
+      }
+
+      .stat-card .label {
+        color: #666;
+        font-size: 1em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .section {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .section h2 {
+        color: #333;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 3px solid #667eea;
+      }
+
+      .tabs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+
+      .tab-btn {
+        padding: 12px 25px;
+        border: none;
+        background: #f0f0f0;
+        color: #333;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: all 0.3s;
+      }
+
+      .tab-btn:hover {
+        background: #e0e0e0;
+      }
+
+      .tab-btn.active {
+        background: #667eea;
+        color: white;
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      .search-box {
+        width: 100%;
+        padding: 12px 20px;
+        margin-bottom: 20px;
+        border: 2px solid #ddd;
+        border-radius: 25px;
+        font-size: 1em;
+        transition: border 0.3s;
+      }
+
+      .search-box:focus {
+        outline: none;
+        border-color: #667eea;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+      }
+
+      th {
+        background: #667eea;
+        color: white;
+        padding: 15px;
+        text-align: left;
+        font-weight: 600;
+        position: sticky;
+        top: 0;
+      }
+
+      td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #eee;
+      }
+
+      tr:hover {
+        background: #f9f9f9;
+      }
+
+      .table-wrapper {
+        max-height: 500px;
+        overflow-y: auto;
+        border-radius: 10px;
+        border: 1px solid #eee;
+      }
+
+      .badge {
+        display: inline-block;
+        padding: 5px 12px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 600;
+      }
+
+      .badge-pending {
+        background: #fff3cd;
+        color: #856404;
+      }
+      .badge-processing {
+        background: #cce5ff;
+        color: #004085;
+      }
+      .badge-shipped {
+        background: #d1ecf1;
+        color: #0c5460;
+      }
+      .badge-delivered {
+        background: #d4edda;
+        color: #155724;
+      }
+      .badge-cancelled {
+        background: #f8d7da;
+        color: #721c24;
+      }
+
+      .price {
+        color: #28a745;
+        font-weight: 600;
+      }
+
+      .loading {
+        text-align: center;
+        padding: 50px;
+        color: #666;
+        font-size: 1.2em;
+      }
+
+      @media (max-width: 768px) {
+        .header h1 {
+          font-size: 1.8em;
+        }
+
+        .stats {
+          grid-template-columns: 1fr;
+        }
+
+        table {
+          font-size: 0.9em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>📊 E-Commerce Data Dashboard</h1>
+        <p>Synthetic Data Visualization & Analysis</p>
+      </div>
+
+      <div class="stats" id="stats">
+        <div class="stat-card">
+          <div class="number" id="total-customers">-</div>
+          <div class="label">Total Customers</div>
+        </div>
+        <div class="stat-card">
+          <div class="number" id="total-products">-</div>
+          <div class="label">Total Products</div>
+        </div>
+        <div class="stat-card">
+          <div class="number" id="total-orders">-</div>
+          <div class="label">Total Orders</div>
+        </div>
+        <div class="stat-card">
+          <div class="number" id="total-revenue">-</div>
+          <div class="label">Total Revenue</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Data Explorer</h2>
+
+        <div class="tabs">
+          <button class="tab-btn active" onclick="showTab('customers')">
+            👥 Customers
+          </button>
+          <button class="tab-btn" onclick="showTab('products')">
+            📦 Products
+          </button>
+          <button class="tab-btn" onclick="showTab('orders')">🛒 Orders</button>
+          <button class="tab-btn" onclick="showTab('order_items')">
+            📋 Order Items
+          </button>
+          <button class="tab-btn" onclick="showTab('payments')">
+            💳 Payments
+          </button>
+          <button class="tab-btn" onclick="showTab('top_orders')">
+            🏆 Top Orders
+          </button>
+        </div>
+
+        <input
+          type="text"
+          class="search-box"
+          id="search-box"
+          placeholder="🔍 Search..."
+          onkeyup="filterTable()"
+        />
+
+        <div id="customers" class="tab-content active">
+          <div class="table-wrapper">
+            <table id="customers-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>City</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="products" class="tab-content">
+          <div class="table-wrapper">
+            <table id="products-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Product Name</th>
+                  <th>Category</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="orders" class="tab-content">
+          <div class="table-wrapper">
+            <table id="orders-table">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer ID</th>
+                  <th>Order Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="order_items" class="tab-content">
+          <div class="table-wrapper">
+            <table id="order_items-table">
+              <thead>
+                <tr>
+                  <th>Item ID</th>
+                  <th>Order ID</th>
+                  <th>Product ID</th>
+                  <th>Quantity</th>
+                  <th>Unit Price</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="payments" class="tab-content">
+          <div class="table-wrapper">
+            <table id="payments-table">
+              <thead>
+                <tr>
+                  <th>Payment ID</th>
+                  <th>Order ID</th>
+                  <th>Payment Date</th>
+                  <th>Payment Method</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="top_orders" class="tab-content">
+          <div class="table-wrapper">
+            <table id="top_orders-table">
+              <thead>
+                <tr>
+                  <th>Customer ID</th>
+                  <th>Customer Name</th>
+                  <th>Order ID</th>
+                  <th>Total Value</th>
+                  <th>Number of Items</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let currentData = {};
+      let currentTab = "customers";
+
+      // Load data from JSON
+      fetch("data.json")
+        .then((response) => response.json())
+        .then((data) => {
+          currentData = data;
+          populateStats(data);
+          populateTables(data);
+        })
+        .catch((error) => {
+          console.error("Error loading data:", error);
+          alert("Error loading data. Make sure data.json exists!");
+        });
+
+      function populateStats(data) {
+        document.getElementById("total-customers").textContent =
+          data.customers.length;
+        document.getElementById("total-products").textContent =
+          data.products.length;
+        document.getElementById("total-orders").textContent =
+          data.orders.length;
+
+        const totalRevenue = data.payments.reduce(
+          (sum, p) => sum + parseFloat(p.amount),
+          0
+        );
+        document.getElementById("total-revenue").textContent =
+          "$" + totalRevenue.toFixed(2);
+      }
+
+      function populateTables(data) {
+        // Customers
+        const customersBody = document.querySelector("#customers-table tbody");
+        customersBody.innerHTML = data.customers
+          .map(
+            (c) => `
+                <tr>
+                    <td>${c.customer_id}</td>
+                    <td>${c.name}</td>
+                    <td>${c.email}</td>
+                    <td>${c.phone}</td>
+                    <td>${c.city}</td>
+                </tr>
+            `
+          )
+          .join("");
+
+        // Products
+        const productsBody = document.querySelector("#products-table tbody");
+        productsBody.innerHTML = data.products
+          .map(
+            (p) => `
+                <tr>
+                    <td>${p.product_id}</td>
+                    <td>${p.product_name}</td>
+                    <td>${p.category}</td>
+                    <td class="price">$${parseFloat(p.price).toFixed(2)}</td>
+                </tr>
+            `
+          )
+          .join("");
+
+        // Orders
+        const ordersBody = document.querySelector("#orders-table tbody");
+        ordersBody.innerHTML = data.orders
+          .map(
+            (o) => `
+                <tr>
+                    <td>${o.order_id}</td>
+                    <td>${o.customer_id}</td>
+                    <td>${o.order_date}</td>
+                    <td><span class="badge badge-${o.order_status}">${o.order_status}</span></td>
+                </tr>
+            `
+          )
+          .join("");
+
+        // Order Items
+        const orderItemsBody = document.querySelector(
+          "#order_items-table tbody"
+        );
+        orderItemsBody.innerHTML = data.order_items
+          .map(
+            (oi) => `
+                <tr>
+                    <td>${oi.item_id}</td>
+                    <td>${oi.order_id}</td>
+                    <td>${oi.product_id}</td>
+                    <td>${oi.quantity}</td>
+                    <td class="price">$${parseFloat(oi.unit_price).toFixed(
+                      2
+                    )}</td>
+                </tr>
+            `
+          )
+          .join("");
+
+        // Payments
+        const paymentsBody = document.querySelector("#payments-table tbody");
+        paymentsBody.innerHTML = data.payments
+          .map(
+            (p) => `
+                <tr>
+                    <td>${p.payment_id}</td>
+                    <td>${p.order_id}</td>
+                    <td>${p.payment_date}</td>
+                    <td>${p.payment_method.replace("_", " ")}</td>
+                    <td class="price">$${parseFloat(p.amount).toFixed(2)}</td>
+                </tr>
+            `
+          )
+          .join("");
+
+        // Top Orders
+        const topOrdersBody = document.querySelector("#top_orders-table tbody");
+        topOrdersBody.innerHTML = data.top_orders
+          .map(
+            (to) => `
+                <tr>
+                    <td>${to.customer_id}</td>
+                    <td>${to.customer_name}</td>
+                    <td>${to.order_id}</td>
+                    <td class="price">$${parseFloat(
+                      to.total_order_value
+                    ).toFixed(2)}</td>
+                    <td>${to.number_of_items}</td>
+                </tr>
+            `
+          )
+          .join("");
+      }
+
+      function showTab(tabName) {
+        currentTab = tabName;
+
+        // Hide all tabs
+        document.querySelectorAll(".tab-content").forEach((tab) => {
+          tab.classList.remove("active");
+        });
+
+        // Remove active from all buttons
+        document.querySelectorAll(".tab-btn").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+
+        // Show selected tab
+        document.getElementById(tabName).classList.add("active");
+
+        // Set active button
+        event.target.classList.add("active");
+
+        // Clear search
+        document.getElementById("search-box").value = "";
+      }
+
+      function filterTable() {
+        const searchTerm = document
+          .getElementById("search-box")
+          .value.toLowerCase();
+        const table = document.querySelector(`#${currentTab}-table tbody`);
+        const rows = table.querySelectorAll("tr");
+
+        rows.forEach((row) => {
+          const text = row.textContent.toLowerCase();
+          row.style.display = text.includes(searchTerm) ? "" : "none";
+        });
+      }
+    </script>
+  </body>
+</html>
