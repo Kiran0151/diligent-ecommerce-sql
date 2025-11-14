@@ -1,0 +1,76 @@
+customer_id,name,email,phone,city
+1,Christopher Brown,christopher.brown1@example.com,+1-225-959-5506,Houston
+2,Linda Jones,linda.jones2@example.com,+1-954-304-9935,Los Angeles
+3,Charles Wilson,charles.wilson3@example.com,+1-232-230-2535,Houston
+4,Linda Taylor,linda.taylor4@example.com,+1-816-227-4257,Dallas
+5,Susan Davis,susan.davis5@example.com,+1-659-803-5557,New York
+6,Matthew Garcia,matthew.garcia6@example.com,+1-914-632-6574,Phoenix
+7,Robert Miller,robert.miller7@example.com,+1-981-544-2674,Los Angeles
+8,Richard Brown,richard.brown8@example.com,+1-567-552-5333,New York
+9,Lisa Anderson,lisa.anderson9@example.com,+1-749-327-7201,Los Angeles
+10,Sarah Martinez,sarah.martinez10@example.com,+1-843-833-6925,San Jose
+11,Michael Williams,michael.williams11@example.com,+1-246-877-4733,Phoenix
+12,John Davis,john.davis12@example.com,+1-303-589-5554,San Diego
+13,Christopher Lopez,christopher.lopez13@example.com,+1-366-579-6820,Houston
+14,Nancy Rodriguez,nancy.rodriguez14@example.com,+1-918-899-2169,San Jose
+15,Christopher Garcia,christopher.garcia15@example.com,+1-746-946-5010,Chicago
+16,Joseph Gonzalez,joseph.gonzalez16@example.com,+1-476-855-4598,Philadelphia
+17,Anthony Johnson,anthony.johnson17@example.com,+1-434-232-6168,San Antonio
+18,William Williams,william.williams18@example.com,+1-416-780-6155,Houston
+19,Christopher Thomas,christopher.thomas19@example.com,+1-605-858-8517,Chicago
+20,William Jones,william.jones20@example.com,+1-452-962-9830,Phoenix
+21,Lisa Jackson,lisa.jackson21@example.com,+1-638-797-7543,Philadelphia
+22,Linda Jones,linda.jones22@example.com,+1-721-705-2489,New York
+23,Margaret Brown,margaret.brown23@example.com,+1-356-842-3621,San Antonio
+24,Karen Williams,karen.williams24@example.com,+1-594-590-8668,Dallas
+25,William Moore,william.moore25@example.com,+1-211-896-2876,Dallas
+26,Matthew Rodriguez,matthew.rodriguez26@example.com,+1-987-856-6573,Los Angeles
+27,Elizabeth Wilson,elizabeth.wilson27@example.com,+1-361-664-1053,Phoenix
+28,Thomas Garcia,thomas.garcia28@example.com,+1-719-308-5889,Dallas
+29,Karen Miller,karen.miller29@example.com,+1-356-582-3646,Dallas
+30,Matthew Taylor,matthew.taylor30@example.com,+1-200-813-6310,San Diego
+31,James Brown,james.brown31@example.com,+1-571-514-4923,New York
+32,Linda Jackson,linda.jackson32@example.com,+1-280-287-8962,Los Angeles
+33,Matthew Moore,matthew.moore33@example.com,+1-984-328-3103,San Diego
+34,Sarah Garcia,sarah.garcia34@example.com,+1-471-740-7932,Houston
+35,Sandra Moore,sandra.moore35@example.com,+1-973-947-4295,Phoenix
+36,Richard Lopez,richard.lopez36@example.com,+1-648-729-8397,Los Angeles
+37,Linda Davis,linda.davis37@example.com,+1-265-546-1344,San Jose
+38,Sarah Davis,sarah.davis38@example.com,+1-802-425-1117,Los Angeles
+39,Daniel Johnson,daniel.johnson39@example.com,+1-434-269-1514,Philadelphia
+40,John Taylor,john.taylor40@example.com,+1-443-485-8953,Houston
+41,Sarah Jones,sarah.jones41@example.com,+1-940-784-8744,Houston
+42,Betty Thomas,betty.thomas42@example.com,+1-616-394-2545,Los Angeles
+43,Nancy Wilson,nancy.wilson43@example.com,+1-562-633-7735,San Diego
+44,Margaret Johnson,margaret.johnson44@example.com,+1-889-869-2612,New York
+45,Richard Hernandez,richard.hernandez45@example.com,+1-311-454-4139,Houston
+46,Sarah Anderson,sarah.anderson46@example.com,+1-343-632-4006,Phoenix
+47,Joseph Davis,joseph.davis47@example.com,+1-277-653-2604,New York
+48,Christopher Moore,christopher.moore48@example.com,+1-215-295-4872,Chicago
+49,Susan Thomas,susan.thomas49@example.com,+1-692-418-7570,New York
+50,Jennifer Gonzalez,jennifer.gonzalez50@example.com,+1-202-599-5345,San Diego
+51,Elizabeth Wilson,elizabeth.wilson51@example.com,+1-913-948-8973,Chicago
+52,Michael Martinez,michael.martinez52@example.com,+1-422-259-9883,New York
+53,Lisa Hernandez,lisa.hernandez53@example.com,+1-258-251-8811,Dallas
+54,Sandra Taylor,sandra.taylor54@example.com,+1-361-258-9320,Los Angeles
+55,Margaret Garcia,margaret.garcia55@example.com,+1-270-809-2113,Houston
+56,Richard Brown,richard.brown56@example.com,+1-783-452-1651,San Jose
+57,John Wilson,john.wilson57@example.com,+1-873-797-9565,Philadelphia
+58,Sandra Rodriguez,sandra.rodriguez58@example.com,+1-409-885-6147,Houston
+59,William Gonzalez,william.gonzalez59@example.com,+1-334-887-5915,San Diego
+60,David Williams,david.williams60@example.com,+1-209-669-2638,Los Angeles
+61,Sarah Miller,sarah.miller61@example.com,+1-718-471-3170,Philadelphia
+62,Mark Williams,mark.williams62@example.com,+1-450-578-5669,Chicago
+63,Joseph Moore,joseph.moore63@example.com,+1-920-509-9666,New York
+64,Nancy Moore,nancy.moore64@example.com,+1-506-879-2697,Chicago
+65,William Brown,william.brown65@example.com,+1-309-960-3546,Phoenix
+66,Elizabeth Martin,elizabeth.martin66@example.com,+1-415-934-6617,Houston
+67,Nancy Rodriguez,nancy.rodriguez67@example.com,+1-717-700-5114,New York
+68,John Wilson,john.wilson68@example.com,+1-483-245-1058,Philadelphia
+69,Matthew Jones,matthew.jones69@example.com,+1-852-468-3647,San Diego
+70,Sarah Wilson,sarah.wilson70@example.com,+1-774-209-2832,Los Angeles
+71,Mark Jones,mark.jones71@example.com,+1-758-236-7049,San Jose
+72,Sarah Jones,sarah.jones72@example.com,+1-640-330-1685,Phoenix
+73,Barbara Johnson,barbara.johnson73@example.com,+1-566-415-5088,Los Angeles
+74,Barbara Moore,barbara.moore74@example.com,+1-616-835-3532,Houston
+75,Margaret Garcia,margaret.garcia75@example.com,+1-381-622-1406,Chicago
