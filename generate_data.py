@@ -12,7 +12,7 @@ MIN_ITEMS_PER_ORDER = 1
 MAX_ITEMS_PER_ORDER = 5
 DATA_DIR = os.path.join(os.path.dirname(__file__), 'data')
 
-random.seed(42)
+random.seed()  # Use system time for random seed - generates different data each run
 
 first_names = [
     'James','Mary','John','Patricia','Robert','Jennifer','Michael','Linda','William','Elizabeth',

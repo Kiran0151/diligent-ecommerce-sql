@@ -3,6 +3,7 @@
 This repository contains a small Python script to generate synthetic e-commerce CSV data and the generated CSVs in the `data/` folder.
 
 Files generated:
+
 - data/customers.csv (76 rows incl header)
 - data/products.csv (81 rows incl header)
 - data/orders.csv (121 rows incl header)
