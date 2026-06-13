@@ -1,0 +1,32 @@
+# E-Commerce Business Intelligence Platform - Python Dependencies
+
+# Core Data Processing
+pandas==3.0.3
+numpy==2.4.6
+
+# Database
+sqlalchemy==2.0.23
+
+# Date/Time Utilities
+python-dateutil==2.9.0.post0
+
+# JSON Processing
+jsonschema==4.20.0
+
+# Logging & Configuration
+python-dotenv==1.0.0
+
+# Optional: For Advanced Features (not required for basic setup)
+# APScheduler==3.10.4  # For ETL scheduling
+# python-Levenshtein==0.23.0  # For string similarity in recommendations
+# scipy==1.13.0  # For statistical analysis
+
+# Development Dependencies (optional)
+# pytest==7.4.3  # For unit testing
+# black==23.12.1  # For code formatting
+# pylint==3.0.3  # For code quality
+
+# Notes:
+# Python Version: 3.10 or higher
+# Database: SQLite3 (built-in)
+# Optional BI Tool: Power BI Desktop or Power BI Online
